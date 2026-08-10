@@ -1,0 +1,21 @@
+[package]
+name = "issuing"
+description = "An easy-to-use customizable error type"
+version = "0.6.1"
+edition.workspace = true
+rust-version.workspace = true
+categories = ["data-structures", "no-std::no-alloc", "rust-patterns", "value-formatting", "development-tools::debugging"]
+keywords = ["issue", "error", "cli"]
+homepage.workspace = true
+repository.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[lib]
+path = "./mod.rs"
+
+[[test]]
+name = "issuing"
+path = "tests.rs"
+
+[dependencies]
