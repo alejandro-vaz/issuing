@@ -47,8 +47,8 @@ pub use section::Section;
 #[derive(Debug, PartialEq, Eq, Hash)]
 pub struct Issue {
     pub name: &'static str,
-    pub description: Option<String> = None,
     pub deprecated: Option<String> = None,
+    pub description: Option<String> = None,
     pub sections: Vec<Section> = const {Vec::new()},
     pub identifier: Identifier = const {Identifier::default()}
 }
