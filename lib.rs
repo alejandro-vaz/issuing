@@ -43,16 +43,14 @@ pub use identifier::Identifier;
 //^ ISSUE
 //^
 
-//> ISSUE -> ENUM
+//> ISSUE -> STRUCT
 #[derive(Debug, PartialEq, Eq, Hash)]
-pub enum Issue {
-    Single {
-        name: &'static str,
-        description: Option<String> = None,
-        help: Option<String> = None,
-        traceback: Option<String> = None,
-        code: Option<Code> = None,
-        identifier: Identifier = const {Identifier::default()}
-    },
-    Group(Vec<Issue>)
+pub struct Issue {
+    pub name: &'static str,
+    pub description: Option<String> = None,
+    pub accumulates: Vec<Issue> = Vec::new(),
+    pub help: Option<String> = None,
+    pub traceback: Option<String> = None,
+    pub code: Option<Code> = None,
+    pub identifier: Identifier = const {Identifier::default()}
 }
