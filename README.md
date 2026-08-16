@@ -11,7 +11,9 @@ Easy, fast reporting to the user via a CLI with enough information.
 This type is not meant to be used by ordinary people writing code, but by library backends defining custom errors:
 
 ```rust
-use libutils_issue::Issue;
+#![feature(default_field_values)]
+
+use issuing::Issue;
 
 enum MyError {
     FirstCause,
@@ -21,8 +23,8 @@ enum MyError {
 impl Into<Issue> for MyError {
     fn into(self) -> Issue {
         return match self {
-            MyError::FirstCause => Issue {name: "error 1", ..},
-            MyError::SecondCause => Issue {name: "error 2", ..}
+            MyError::FirstCause => Issue::Single {name: "error 1", ..},
+            MyError::SecondCause => Issue::Single {name: "error 2", ..}
         }
     }
 }

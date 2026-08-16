@@ -10,12 +10,12 @@ use super::span::Span;
 
 
 //^
-//^ CODELINE
+//^ CODE
 //^
 
-//> CODELINE -> STRUCT
+//> CODE -> STRUCT
 #[derive(Debug, PartialEq, Eq, Hash)]
-pub struct Codeline {
+pub struct Code {
     pub code: String,
     pub message: String,
     pub number: Option<usize> = None,

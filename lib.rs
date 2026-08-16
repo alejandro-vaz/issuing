@@ -18,16 +18,19 @@
 extern crate alloc;
 
 //> HEAD -> MODULES
-mod codeline;
+mod code;
 mod conversions;
 mod identifier;
 mod span;
 
 //> HEAD -> ALLOC
-use alloc::string::String;
+use alloc::{
+    string::String,
+    vec::Vec
+};
 
-//> HEAD -> CODELINE
-pub use codeline::Codeline;
+//> HEAD -> CODE
+pub use code::Code;
 
 //> HEAD -> SPAN
 pub use span::Span;
@@ -40,13 +43,16 @@ pub use identifier::Identifier;
 //^ ISSUE
 //^
 
-//> ISSUE -> STRUCT
+//> ISSUE -> ENUM
 #[derive(Debug, PartialEq, Eq, Hash)]
-pub struct Issue {
-    pub name: &'static str,
-    pub description: Option<String> = None,
-    pub help: Option<String> = None,
-    pub traceback: Option<String> = None,
-    pub codeline: Option<Codeline> = None,
-    pub identifier: Identifier = const {Identifier::default()}
+pub enum Issue {
+    Single {
+        name: &'static str,
+        description: Option<String> = None,
+        help: Option<String> = None,
+        traceback: Option<String> = None,
+        code: Option<Code> = None,
+        identifier: Identifier = const {Identifier::default()}
+    },
+    Group(Vec<Issue>)
 }

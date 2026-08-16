@@ -17,8 +17,9 @@ use issuing::Issue;
 #[test]
 fn create() -> () {
     let _issue = Issue::from("hello");
-    let _manual = Issue {
+    let _manual = Issue::Single {
         name: "myname",
         ..
     };
+    let _group = Issue::Group(vec![_manual]);
 }

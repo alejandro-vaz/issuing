@@ -12,7 +12,7 @@ use super::Issue;
 
 //> IMPLEMENTATIONS -> &'STATIC STR
 const impl From<&'static str> for Issue {
-    fn from(value: &'static str) -> Self {return Self {
+    fn from(value: &'static str) -> Self {return Self::Single {
         name: value,
         ..
     }}
