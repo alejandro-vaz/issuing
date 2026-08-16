@@ -21,7 +21,7 @@ use alloc::string::String;
 pub enum Section {
     Code {
         code: String,
-        language: &'static str,
+        language: Option<&'static str>,
         line: Option<usize> = None,
         message: Option<String> = None,
         span: Option<Span> = None,
