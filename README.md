@@ -23,8 +23,8 @@ enum MyError {
 impl Into<Issue> for MyError {
     fn into(self) -> Issue {
         return match self {
-            MyError::FirstCause => Issue::Single {name: "error 1", ..},
-            MyError::SecondCause => Issue::Single {name: "error 2", ..}
+            MyError::FirstCause => Issue {name: "error 1", ..},
+            MyError::SecondCause => Issue {name: "error 2", ..}
         }
     }
 }
