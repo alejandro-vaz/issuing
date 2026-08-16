@@ -9,9 +9,9 @@
 #![doc = include_str!("README.md")]
 
 //> HEAD -> FEATURES
-#![feature(const_convert)]
 #![feature(const_default)]
 #![feature(default_field_values)]
+#![feature(const_convert)]
 #![feature(const_trait_impl)]
 
 //> HEAD -> CRATES
@@ -24,7 +24,10 @@ mod section;
 mod span;
 
 //> HEAD -> ALLOC
-use alloc::vec::Vec;
+use alloc::{
+    vec::Vec,
+    string::String
+};
 
 //> HEAD -> SPAN
 pub use span::Span;
@@ -44,6 +47,8 @@ pub use section::Section;
 #[derive(Debug, PartialEq, Eq, Hash)]
 pub struct Issue {
     pub name: &'static str,
+    pub description: Option<String> = None,
+    pub deprecated: Option<String> = None,
     pub sections: Vec<Section> = const {Vec::new()},
     pub identifier: Identifier = const {Identifier::default()}
 }

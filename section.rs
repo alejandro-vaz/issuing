@@ -19,7 +19,6 @@ use alloc::string::String;
 //> SECTION -> ENUM
 #[derive(Debug, PartialEq, Eq, Hash)]
 pub enum Section {
-    Description(String),
     Code {
         code: String,
         message: String,

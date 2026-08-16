@@ -6,7 +6,10 @@
 #![feature(default_field_values)]
 
 //> HEAD -> ISSUING
-use issuing::Issue;
+use issuing::{
+    Issue,
+    Section
+};
 
 
 //^
@@ -19,7 +22,9 @@ fn create() -> () {
     let _issue = Issue::from("hello");
     let _manual = Issue {
         name: "myname",
+        sections: Vec::from([
+            Section::Help("get help".to_string())
+        ]),
         ..
     };
-    let _group = vec![_manual];
 }
