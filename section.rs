@@ -21,10 +21,10 @@ use alloc::string::String;
 pub enum Section {
     Code {
         code: String,
-        message: String,
-        line: Option<usize>,
-        span: Option<Span>,
-        language: &'static str
+        language: &'static str,
+        line: Option<usize> = None,
+        message: Option<String> = None,
+        span: Option<Span> = None,
     },
     Traceback(String),
     Child(Issue),
