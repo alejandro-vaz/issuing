@@ -14,9 +14,10 @@ use super::span::Span;
 //^
 
 //> CODELINE -> STRUCT
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Eq, Hash)]
 pub struct Codeline {
     pub code: String,
     pub message: String,
-    pub span: Span = Span::RangeFull(..)
+    pub number: Option<usize> = None,
+    pub span: Option<Span> = None
 }

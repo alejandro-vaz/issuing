@@ -22,7 +22,7 @@ use enum_dispatch::enum_dispatch;
 
 //> SPAN -> ENUM
 #[enum_dispatch(RangeBounds)]
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Eq, Hash, Clone, Copy)]
 pub enum Span {
     Range(Range<usize>),
     RangeFrom(RangeFrom<usize>),
@@ -30,9 +30,4 @@ pub enum Span {
     RangeInclusive(RangeInclusive<usize>),
     RangeTo(RangeTo<usize>),
     RangeToInclusive(RangeToInclusive<usize>)
-}
-
-//> SPAN -> DEFAULT
-const impl Default for Span {
-    fn default() -> Self {return Span::RangeFull(..)}
 }
