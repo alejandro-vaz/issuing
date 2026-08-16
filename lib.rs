@@ -17,7 +17,9 @@
 extern crate alloc;
 
 //> HEAD -> MODULES
+mod codeline;
 mod conversions;
+mod span;
 
 //> HEAD -> ALLOC
 use alloc::string::String;
@@ -27,6 +29,12 @@ use core::hash::{
     Hash,
     Hasher
 };
+
+//> HEAD -> CODELINE
+pub use codeline::Codeline;
+
+//> HEAD -> SPAN
+pub use span::Span;
 
 
 //^
@@ -39,36 +47,8 @@ pub struct Issue {
     pub name: &'static str,
     pub description: Option<String> = None,
     pub help: Option<String> = None,
-    pub traceback: Option<String> = None
-}
-
-//> ISSUE -> IMPLEMENTATION
-impl Issue {
-    pub fn assert_normal(self) -> Self {
-        for (condition, message) in [
-            (!self.name.is_empty(), "name is empty"),
-            (
-                self.name.chars().next().map(|c| c.is_lowercase()).unwrap_or_default(), 
-                "name doesn't start with lowercase"
-            ),
-            (self.name.trim().len() == self.name.len(), "name has whitespace padding"),
-            (self.name.chars().all(|c| c != '.'), "name has dot (.) characters"),
-            ((|| {
-                let mut before = false;
-                for character in self.name.chars() {
-                    if character.is_whitespace() {
-                        if before {return false} else {before = true}
-                    } else {before = false}
-                }
-                true
-            })(), "name has double spaces in it"),
-            (!matches!(
-                self.description.as_ref().map(String::as_str), 
-                Some("")
-            ), "description is empty or none")
-        ] {debug_assert!(condition, "{message}: {self:#?}")};
-        return self;
-    }
+    pub traceback: Option<String> = None,
+    pub codeline: Option<Codeline> = None
 }
 
 //> ISSUE -> HASH
