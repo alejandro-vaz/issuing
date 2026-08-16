@@ -11,6 +11,7 @@
 //> HEAD -> FEATURES
 #![feature(const_convert)]
 #![feature(default_field_values)]
+#![feature(const_default)]
 #![feature(const_trait_impl)]
 
 //> HEAD -> CRATES

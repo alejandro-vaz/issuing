@@ -31,3 +31,8 @@ pub enum Span {
     RangeTo(RangeTo<usize>),
     RangeToInclusive(RangeToInclusive<usize>)
 }
+
+//> SPAN -> DEFAULT
+const impl Default for Span {
+    fn default() -> Self {return Span::RangeFull(..)}
+}

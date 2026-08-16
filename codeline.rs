@@ -18,5 +18,5 @@ use super::span::Span;
 pub struct Codeline {
     pub code: String,
     pub message: String,
-    pub span: Span
+    pub span: Span = Span::RangeFull(..)
 }
