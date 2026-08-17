@@ -24,10 +24,7 @@ mod section;
 mod span;
 
 //> HEAD -> ALLOC
-use alloc::{
-    vec::Vec,
-    string::String
-};
+use alloc::vec::Vec;
 
 //> HEAD -> SPAN
 pub use span::Span;
@@ -47,8 +44,6 @@ pub use section::Section;
 #[derive(Debug, PartialEq, Eq, Hash)]
 pub struct Issue {
     pub name: &'static str,
-    pub deprecation: Option<String> = None,
-    pub description: Option<String> = None,
-    pub sections: Vec<Section> = const {Vec::new()},
+    pub sections: Vec<Section> = const {Vec::default()},
     pub identifier: Identifier = const {Identifier::default()}
 }

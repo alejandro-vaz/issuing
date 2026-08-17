@@ -9,7 +9,10 @@ use super::{
 };
 
 //> HEAD -> ALLOC
-use alloc::string::String;
+use alloc::{
+    string::String,
+    boxed::Box
+};
 
 
 //^
@@ -20,13 +23,15 @@ use alloc::string::String;
 #[derive(Debug, PartialEq, Eq, Hash)]
 pub enum Section {
     Code {
+        extends: Box<Section>,
         code: String,
         language: Option<&'static str> = None,
+        path: Option<String> = None,
         line: Option<usize> = None,
-        message: Option<String> = None,
-        span: Option<Span> = None,
+        span: Span = Span::RangeFull(..),
     },
-    Traceback(String),
+    Cause(String),
+    Deprecated(String),
     Child(Issue),
     Help(String),
     Note(String)
